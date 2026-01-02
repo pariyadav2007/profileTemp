@@ -528,6 +528,10 @@
     .footer-contact p strong {
       color: #fff;
     }
+    .no-pointer {
+  cursor: default;        /* removes hand pointer */
+  pointer-events: none;   /* disables click/hover */
+}
   </style>
 </head>
 
@@ -620,7 +624,7 @@
                   <div class="row">
                     <div class="col-4 align-items-center text-center">
                       <div class="align-items-center text-danger">
-                        <i class="fa-solid fa-phone fa-2xl" style="height:60px;margin-top: 50%;"></i>
+                        <i class="fa-solid fa-phone fa-2xl" style="height:60px;margin-top: 50%;font-size:30px;"></i>
                       </div>
                     </div>
                     <div class="col-8 m-auto">
@@ -637,7 +641,7 @@
                   <div class="row">
                     <div class="col-4 align-items-center text-center">
                       <div class="align-items-center text-danger">
-                        <i class="fa-solid fa-envelope fa-2xl" style="height:60px;margin-top: 50%;"></i>
+                        <i class="fa-solid fa-envelope fa-2xl" style="height:60px;margin-top: 50%;font-size:33px;"></i>
                       </div>
                     </div>
                     <div class="col-8 m-auto">
@@ -676,7 +680,7 @@
                 <!-- <h4>Senior Creative Director</h4>
           <p>Digital Innovation Labs</p> -->
                 <h2><i class="fa-solid fa-graduation-cap"></i> Graduation</h2>
-                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill">2025-Present</button>
+                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill no-pointer">2025-Present</button>
                 <br>
                 <p>Star Infotech College</p>
                 <p style="font-size: 17px;">Bachelor of Computer Applications</p>
@@ -703,7 +707,7 @@
           <p>Institute of Creative Arts</p> -->
                 <h2><i class="fa-solid fa-building-columns" style="font-size: 30px;"></i> Senoir Secondary</h2>
 
-                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill">2024-25</button><br>
+                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill no-pointer">2024-25</button><br>
                 <p>Girls Govt.Senior Secondary School , Kishangarh</p>
                 <p>Stream : Commerce with Computer Science</p>
                 <p>Percentage : 93.40%</p>
@@ -721,7 +725,7 @@
           <p>Digital Innovation Labs</p> -->
                 <h2><i class="fa-solid fa-school" style="font-size: 28px;"></i>
                   Secondary</h2>
-                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill">2022-23</button><br>
+                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill no-pointer">2022-23</button><br>
                 <!-- <b>Secondary Education</b> -->
                 <p>Mahatma Gandhi School , Kishangarh</p>
                 <p>Percentage : 83.83%</p>
@@ -1071,4 +1075,5 @@
 
 
 </html>
+
 
