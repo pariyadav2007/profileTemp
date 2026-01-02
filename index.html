@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+
+    .hero {
+      height: 100vh;
+      /* background: #111;  */
+      /* background-image: url(https://images.unsplash.com/photo-1457732815361-daa98277e9c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBiYWNrZ3JvdW5kJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D); */
+      background-image: url(images/heroImage.png);
+      /* background-image: url(images/pariAvatar.jpg); */
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .portfolio img {
+      width: 100%;
+      height: auto;
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline-line {
+      position: relative;
+    }
+
+    .timeline-line::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: linear-gradient(#ff4d4d, #ff1a1a);
+      transform: translateX(-50%);
+    }
+
+    .timeline-card {
+      position: relative;
+      background: linear-gradient(145deg, #111, #1a1a1a);
+      border-radius: 16px;
+      padding: 25px;
+      color: #fff;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.15);
+      width: 100%;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Timeline Mobile Fixes */
+    @media (max-width: 767.98px) {
+      .timeline-line::before {
+        left: 20px;
+        transform: none;
+      }
+
+      .timeline-card.left,
+      .timeline-card.right {
+        text-align: left !important;
+        margin: 0 auto 20px auto !important;
+        width: 95% !important;
+      }
+
+      .col-md-5 {
+        width: 100% !important;
+        margin-bottom: 20px;
+      }
+
+      .col-md-2.timeline-line {
+        display: none;
+      }
+    }
+
+    .c:hover {
+      /* transform: scale(1.02); */
+      transform: translateY(-15px);
+      transition: all 0.9s ease-in-out;
+      border-color: rgb(255, 0, 55);
+    }
+
+    .w :hover {
+      border-color: white;
+    }
+
+    r:hover {
+      border-color: rgb(255, 0, 55);
+    }
+
+
+    /* 
+    .skills-title {
+      color: #e10600;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .skill-card {
+      background-color: #141414;
+      /* border: 1px solid #2a0000; */
+    /* border-color: #141414;
+      transition: transform 0.3s, box-shadow 0.3s;
+    } */
+
+    .skill-card img:hover {
+      transform: translateY(-8px);
+      /* box-shadow: 0 0 20px rgba(225, 6, 0, 0.4); */
+    }
+
+    .skill-card img {
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .skill-card h5 {
+      /* color: #e10600; */
+      color: white;
+      margin-top: 10px;
+    }
+
+    .skill-card p {
+      font-size: 14px;
+      color: #cccccc;
+    }
+
+    */ .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-weight: 600;
+    }
+
+    .section-title span {
+      display: inline-block;
+      width: 60px;
+      height: 3px;
+      background: crimson;
+      margin-top: 10px;
+    }
+
+    .skill-card {
+      background: #111;
+      border-radius: 15px;
+      padding: 30px;
+      transition: 0.3s;
+      height: 100%;
+      border: 1px solid #1c1c1c;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      border-color: crimson;
+      /* box-shadow: 0 0 20px rgba(220,20,60,0.3); */
+      border-top: crimson;
+    }
+
+    .skill-icon {
+      font-size: 40px;
+      color: crimson;
+      margin-bottom: 20px;
+    }
+
+    .skill-card h5 {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .skill-card p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .project-title {
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ff2e2e;
+    }
+
+    /* Card */
+    .project-card {
+      position: relative;
+      background: rgba(20, 20, 20, 0.75);
+      border-radius: 18px;
+      overflow: hidden;
+      padding: 14px;
+      backdrop-filter: blur(12px);
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
+    }
+
+    /* Animated red border */
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      padding: 2px;
+      background: linear-gradient(120deg,
+          transparent,
+          #ff2e2e,
+          transparent);
+      background-size: 300% 300%;
+      animation: borderFlow 4s linear infinite;
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+    }
+
+    @keyframes borderFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 300% 50%;
+      }
+    }
+
+    /* 3D depth movement (not boring hover) */
+    .project-card:hover {
+      transform: translateY(-10px) rotateX(4deg);
+    }
+
+    /* Image */
+    .project-image {
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Content */
+    .project-content {
+      padding: 15px 10px 5px;
+    }
+
+    .project-content h4 {
+      color: #ff2e2e;
+      margin-bottom: 6px;
+    }
+
+    .project-content p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .tech {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      /* background: rgba(255, 46, 46, 0.15); */
+      /* background-color: white; */
+      background-color: #141414;
+      /* color: #ff2e2e; */
+      /* color:red; */
+
+      letter-spacing: 1px;
+    }
+
+    .hobby-container {
+      width: 100%;
+    }
+
+    .hobby-card {
+      position: relative;
+      background: #111;
+      border-radius: 18px;
+      padding: 30px 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
+      height: 100%;
+      margin-bottom: 20px;
+    }
+
+    /* Contact Form Theme */
+    .contact-form-container {
+      background: linear-gradient(145deg, #0a0a0a, #151515);
+      border: 1px solid rgba(255, 0, 0, 0.15);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.05);
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-form-container:hover {
+      border-color: rgba(255, 0, 0, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.1);
+    }
+
+    #contact .form-label {
+      color: #ccc;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    #contact .form-control {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 12px 15px;
+      border-radius: 10px;
+    }
+
+    #contact .form-control:focus {
+      background-color: #222;
+      border-color: #ff0000;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+      outline: none;
+    }
+
+    #contact .btn-submit {
+      background: linear-gradient(45deg, #800000, #ff0000);
+      border: none;
+      color: #fff;
+      padding: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    #contact .btn-submit:hover {
+      background: linear-gradient(45deg, #a00000, #ff3333);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+    }
+
+    .hobby-card::before {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg,
+          transparent,
+          rgba(255, 0, 0, 0.35),
+          transparent);
+      transform: rotate(25deg);
+      transition: 0.7s;
+    }
+
+    .hobby-card:hover::before {
+      top: 0;
+      left: 0;
+    }
+
+    .hobby-card:hover {
+      transform: rotateX(8deg) rotateY(-8deg) scale(1.04);
+    }
+
+    .hobby-icon {
+      font-size: 42px;
+      color: #ff1e1e;
+      margin-bottom: 15px;
+      animation: pulse 2s infinite;
+    }
+
+    .hobby-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .hobby-desc {
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* subtle border glow */
+    .hobby-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      pointer-events: none;
+    }
+
+
+    .footer {
+      background: linear-gradient(180deg, #0b0b0b, #111);
+      color: #ccc;
+      padding-top: 60px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .footer-container {
+      padding: 0 15px;
+    }
+
+    /* Brand */
+    .footer-brand h2 {
+      color: #fff;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #aaa;
+    }
+
+    /* Social Icons */
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #444;
+      border-radius: 50%;
+      color: #fff;
+      margin-right: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      border-color: #e50914;
+      color: #e50914;
+      box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+    }
+
+    /* Links */
+    .footer-links h3,
+    .footer-contact h3 {
+      color: #fff;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #e50914;
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      text-decoration: none;
+      color: #aaa;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+      color: #ff3333;
+      padding-left: 5px;
+    }
+
+    @media (max-width: 767.98px) {
+
+      .footer-links h3::after,
+      .footer-contact h3::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+    }
+
+    .footer-contact p strong {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand text-light" href="#" style="font-size: 30px;">PARI YADAV</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto" style="font-size: 18px;">
+          <li class="nav-item"><a class="nav-link js-scroll-trigger text-danger" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#edu">Education</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#work">Skills</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#project">Projects</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hobby">Hobbies</a></li>
+
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script type="text/javascript">
+        $('.js-scroll-trigger').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    </script>
+
+
+  <section class="hero" id="home">
+    <div class="container">
+      <h1 class="display-4" style="font-weight: 100;">Hi, I'm PARI YADAV</h1>
+      <span class="lead">I'm a </span><span style="font-size: 30px; font-weight: bold; color: #ff4d4d;"> Frontend
+        Developer</span>
+        <br>
+        <br>
+        <span class="lead mt-4 pt-4">I build clean, responsive, and visually engaging</span>
+        <br>
+        <span class="lead mt-4 pt-4">web interfaces with a strong focus on user experience.</span>
+
+    </div>
+  </section>
+
+  <div style="background-color: #141414;" class="py-5 text-light m-auto" id="about">
+    <div class="container mt-4" id="abo">
+      <!-- <p class="text-danger text-center mt-4" style="text-decoration:underline;font-size: 15px;">About Me</p> -->
+      <h2 style="font-size: 45px;" class="text-center">About Me</h2>
+
+      <p class="text-center mt-5 justify-content-center">I am a Bachelor of Computer Applications student with hands-on experience in HTML,
+        CSS,
+        Bootstrap, and C
+        programming. I like to create responsive, structured user interfaces using Bootstrap’s grid system and
+        reusable components. My strong foundation in C language has helped me develop logical thinking, file handling
+        systems, and data-driven console applications.</p>
+
+      <!--  align-items-center -->
+      <div class="row mt-5">
+        <div class="col-12 col-sm-4 col-md-4 m-auto">
+          <div class="card bg-dark text-light mb-3 rounded-4 text-center">
+            <div class="card-body">
+              <!-- <img src="images/pariAI.jpg" alt="Profile Picture"
+                class="img-fluid rounded-circle border border-5 border-danger m-auto"
+                style="height:150px;width:180px;"> -->
+              <img src="images/pari1.jpg" alt="Profile Picture"
+                class="img-fluid rounded-circle border border-5 border-danger m-auto" style="height:150px;width:180px;">
+              <h3 class="card-title">PARI YADAV</h3>
+              <p class="card-text text-danger">Frontend Developer</p>
+              
+              <!-- <hr> -->
+              <button class="btn btn-danger btn-lg m-auto"><a href="Pari yadav (2).pdf" class="text-light"
+                  style="text-decoration: none;" target="_blank">Download Resume</a></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8 col-md-8 text-left">
+          <button class="mb-2 btn btn-sm text-danger bg-dark border border-danger border-1 rounded-4"
+            style="font-weight: bold;">About Me</button>
+          <p>I am deeply interested in continuous learning and skill enhancement, particularly in applying theoretical
+            knowledge to practical, real-world scenarios. I seek opportunities such as internships or entry-level roles
+            where I can contribute meaningfully, refine my technical expertise, and grow into a competent and dependable
+            software professional with long-term career aspirations in the IT industry.</p>
+          <div class="row g-3 mt-2">
+            <div class="col">
+              <div class="card c bg-dark text-light rounded-4" style="height:145px;">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-4 align-items-center text-center">
+                      <div class="align-items-center text-danger">
+                        <i class="fa-solid fa-phone fa-2xl" style="height:60px;margin-top: 50%;"></i>
+                      </div>
+                    </div>
+                    <div class="col-8 m-auto">
+                      <h5 class="card-title">Phone</h5>
+                      <p class="card-text">+91 9983098510</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card c bg-dark text-light rounded-4" style="height:145px;">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-4 align-items-center text-center">
+                      <div class="align-items-center text-danger">
+                        <i class="fa-solid fa-envelope fa-2xl" style="height:60px;margin-top: 50%;"></i>
+                      </div>
+                    </div>
+                    <div class="col-8 m-auto">
+                      <h5 class="card-title">Email</h5>
+                      <p class="card-text">py215618@gmail.com</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div style="background-color: black" class="py-5 m-auto container-fluid" id="edu">
+    <div class="container mt-4">
+      <!-- <p class="text-danger text-center mt-4" style="text-decoration:underline;font-size: 15px;">About Me</p> -->
+      <h2 style="font-size: 45px;" class="text-center mb-5 text-light">Education</h2>
+
+
+      <!-- <p class="text-danger text-center pt-5" style="text-decoration:underline;font-size: 15px;">Education</p> -->
+
+      <!-- <h2 style="font-size: 45px;" class="text-center">Education</h2> -->
+
+      <div class="container py-5">
+        <div class="timeline">
+
+          <div class="row timeline-item mb-4">
+            <div class="col-md-5">
+              <div class="card c timeline-card left">
+                <!-- <div class="icon">🎓</div> -->
+                <!-- <h4>Senior Creative Director</h4>
+          <p>Digital Innovation Labs</p> -->
+                <h2><i class="fa-solid fa-graduation-cap"></i> Graduation</h2>
+                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill">2025-Present</button>
+                <br>
+                <p>Star Infotech College</p>
+                <p style="font-size: 17px;">Bachelor of Computer Applications</p>
+
+                <p>Ist Year Ist Semester</p>
+
+              </div>
+            </div>
+
+            <div class="col-md-2 timeline-line"></div>
+
+            <div class="col-md-5 d-none d-md-block"></div>
+          </div>
+
+          <div class="row timeline-item mb-4">
+            <div class="col-md-5 d-none d-md-block"></div>
+
+            <div class="col-md-2 timeline-line"></div>
+
+            <div class="col-md-5">
+              <div class="card c timeline-card right">
+                <!-- <div class="icon">📘</div>
+          <h4>Master of Design Innovation</h4>
+          <p>Institute of Creative Arts</p> -->
+                <h2><i class="fa-solid fa-building-columns" style="font-size: 30px;"></i> Senoir Secondary</h2>
+
+                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill">2024-25</button><br>
+                <p>Girls Govt.Senior Secondary School , Kishangarh</p>
+                <p>Stream : Commerce with Computer Science</p>
+                <p>Percentage : 93.40%</p>
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row timeline-item mb-4">
+            <div class="col-md-5">
+              <div class="card c timeline-card left">
+                <!-- <div class="icon">🎓</div> -->
+                <!-- <h4>Senior Creative Director</h4>
+          <p>Digital Innovation Labs</p> -->
+                <h2><i class="fa-solid fa-school" style="font-size: 28px;"></i>
+                  Secondary</h2>
+                <button class="btn btn-sm text-light border border-danger bg-danger rounded-pill">2022-23</button><br>
+                <!-- <b>Secondary Education</b> -->
+                <p>Mahatma Gandhi School , Kishangarh</p>
+                <p>Percentage : 83.83%</p>
+
+
+              </div>
+            </div>
+
+            <div class="col-md-2 timeline-line"></div>
+
+            <div class="col-md-5 d-none d-md-block"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <section class="py-5" id="work">
+    <div class="container text-center">
+      <h2>Skill</h2>
+      <div class="row g-4">
+        <div class="col-md-4 portfolio"><img src="https://placehold.co/600x400" alt="Project"></div>
+        <div class="col-md-4 portfolio"><img src="https://placehold.co/600x400" alt="Project"></div>
+        <div class="col-md-4 portfolio"><img src="https://placehold.co/600x400" alt="Project"></div>
+      </div>
+    </div>
+  </section> -->
+
+
+  <div style="background-color: #141414;" class="py-5 text-light m-auto" id="work">
+    <div class="container mt-5 mb-5">
+      <!-- <h5 class="text-danger text-center mt-4 mb-5" style="text-decoration:underline;font-size: 25px;">Tech</h5> -->
+      <h2 style="font-size: 45px;" class="text-center mb-5 mt-5">Skills</h2>
+      <div class="container-fluid">
+        <!-- <div class="row mt-5 mb-5">
+          
+          <div class="col-md-3">
+            <div class="card skill-card text-center p-3 mt-4">
+              <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" class="card-img-top" alt="HTML" height="120px">
+              <h5>HTML</h5>
+              <p>Strong foundation in semantic HTML for creating structured, accessible web pages.</p>
+              
+            </div>
+          </div>
+
+        
+          <div class="col-md-3">
+            <div class="card skill-card text-center p-3 mt-4">
+              <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" class="card-img-top" alt="CSS">
+              <h5>CSS</h5>
+              <p>Experience with layouts, animations, responsive design, and modern UI styling.</p>
+            </div>
+          </div>
+
+        
+          <div class="col-md-3">
+            <div class="card skill-card text-center p-3 mt-4">
+              <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" class="card-img-top" alt="Bootstrap">
+              <h5>BOOTSTRAP</h5>
+              <p>Fast and responsive design using Bootstrap grid, components, and utilities.</p>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="card skill-card text-center p-3 mt-4">
+              <img src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png" class="card-img-top" alt="C Language">
+              <h5>C</h5>
+              <p>Strong understanding of logic, pointers, arrays, structures, and core programming concepts.</p>
+            </div>
+          </div>
+
+
+
+        </div> -->
+
+
+        <section class="container py-5">
+          <div class="section-title">
+
+
+          </div>
+
+          <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-4">
+
+
+            <div class="col">
+              <div class="skill-card text-center">
+                <i class="fa-brands fa-html5 skill-icon"></i>
+                <h5>HTML</h5>
+                <p>Knowledge of semantic HTML and structured web layouts.</p>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="skill-card text-center">
+                <i class="fa-brands fa-css3-alt skill-icon"></i>
+                <h5>CSS</h5>
+                <p>Experience with responsive design, animations, and layouts.</p>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="skill-card text-center">
+                <i class="fa-brands fa-bootstrap skill-icon"></i>
+                <h5>Bootstrap</h5>
+                <p>Rapid UI development using Bootstrap grid and components.</p>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="skill-card text-center">
+                <i class="fa-solid fa-code skill-icon"></i>
+                <h5>C</h5>
+                <p>Good understanding of logic building, arrays, pointers, and structures.</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div style="background-color: black;" class="py-5 text-light m-auto" id="project">
+    <div class="container mt-5" id="proj">
+
+      <h2 style="font-size: 45px;" class="text-center mb-4">Projects</h2>
+      <div class="container-fluid">
+
+
+        <div class="row justify-content-center g-4">
+
+
+          <div class="col-12 col-lg-5">
+            <div class="project-card">
+              <div class="project-image">
+                <img src="images/FoodImage.png" alt="Project Image">
+              </div>
+              <div class="project-content">
+                <h4>Foodie Hub</h4>
+                <p>Order Your favourite fast food!</p>
+                <span class="tech">HTML • CSS • Bootstrap-5</span>
+                <br>
+                <div class="mt-2">
+                  <button type="button" class="tech btn btn-dark btn-lg text-center rounded-pill
+                    "><a target="_blank" href="https://pariyadav2007.github.io/FoodTemplate/" class="text-decoration-none text-light"
+                      style="justify-content: center;">View Project</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-12 col-lg-5">
+            <div class="project-card">
+              <div class="project-image">
+                <img src="images/petImage.png" alt="Project Image">
+              </div>
+              <div class="project-content">
+                <h4>Pet care</h4>
+                <p>Get record about vaccination</p>
+                <span class="tech">HTML • CSS • Bootstrap-5</span>
+                <br>
+                <div class="mt-2">
+                  <button type="button" class="tech btn btn-dark btn-lg text-center rounded-pill
+                    "><a target="_blank" href="https://pariyadav2007.github.io/petTemplate" class="text-decoration-none text-light"
+                      style="justify-content: center;">View Project</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div style="background-color: #141414;" class="py-5 text-light m-auto" id="hobby">
+    <div class="container mt-4">
+
+      <h2 style="font-size: 45px;" class="text-center mb-4">Hobbies</h2>
+
+
+      <div class="hobby-container container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="hobby-card">
+              <div class="hobby-icon">🎨</div>
+              <div class="hobby-title">Painting</div>
+              <div class="hobby-desc">Creative expression through colors and imagination.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="hobby-card">
+              <div class="hobby-icon">♟️</div>
+              <div class="hobby-title">Chess</div>
+              <div class="hobby-desc">Strategic thinking and logical planning.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="hobby-card">
+              <div class="hobby-icon">🏸</div>
+              <div class="hobby-title">Badminton</div>
+              <div class="hobby-desc">Fast-paced sport for agility and focus.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="hobby-card">
+              <div class="hobby-icon">🎵</div>
+              <div class="hobby-title">Music</div>
+              <div class="hobby-desc">Relaxing the mind through rhythm and sound.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="hobby-card">
+              <div class="hobby-icon">🎮</div>
+              <div class="hobby-title">Gaming</div>
+              <div class="hobby-desc">Interactive entertainment and problem-solving.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="hobby-card">
+              <div class="hobby-icon">📚</div>
+              <div class="hobby-title">Reading</div>
+              <div class="hobby-desc">Exploring knowledge and imagination through books.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="py-5 m-auto" id="contact" style="background-color: black;">
+    <div class="container">
+      <!-- <p class="text-danger text-center mt-4" style="text-decoration:underline;font-size: 15px;">Contact</p> -->
+      <h2 style="font-size: 45px;" class="text-center mb-5 mt-5 text-light">Contact</h2>
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-md-6 text-light text-center text-md-start">
+          <h2>Get In Touch</h2>
+          <p>If you have any questions or would like to discuss potential opportunities, please feel free to reach out
+            to
+            me using the contact information below or by filling out the contact form. I look forward to hearing from
+            you!</p>
+            <br>
+          <p>
+            Address : Patel Nagar ,Kishangarh, Ajmer, Rajasthan<br>
+            <br>
+            Phone : +91 9983098510<br>
+
+          </p>
+          <a href="mailto:py215618@gmail.com" class="text-light">email : py215618@gmail.com</a>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="m-auto contact-form-container rounded-5 p-4 p-md-5"
+            style="width: 100%; max-width: 500px; text-align: left;">
+            <form class="p-1">
+
+              <div class="mb-4">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" autocomplete="off">
+              </div>
+              <div class="mb-4">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" autocomplete="off">
+              </div>
+              <div class="mb-4">
+                <label for="feed" class="form-label">Message</label>
+                <textarea class="form-control" id="feed" rows="4" placeholder="How can I help you?" name="feed"
+                  style="resize: none;" autocomplete="off"></textarea>
+              </div>
+              <div class="form-check mb-4">
+                <label class="form-check-label text-secondary">
+                  <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                </label>
+              </div>
+              <button type="submit" class="btn btn-submit w-100">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container container">
+      <div class="row g-4 justify-content-center text-center text-md-start">
+
+        <!-- Brand Section -->
+        <div class="col-12 col-md-4 footer-brand">
+          <h2>Pari Yadav</h2>
+          <p>
+            Passionate Frontend Developer dedicated to crafting engaging and user-friendly web experiences.
+          </p>
+        </div>
+
+        <!-- Useful Links -->
+        <div class="col-12 col-md-4 footer-links">
+          <h3>Useful Links</h3>
+          <ul class="list-unstyled">
+            <li><a href="#">Home</a></li>
+            <li><a href="#abo">About</a></li>
+            <li><a href="#proj">Projects</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-12 col-md-4 footer-contact">
+          <h3>Contact Us</h3>
+          <p>Patel Nagar<br>Kishangarh<br>Ajmer , Rajasthan</p>
+          <p><strong>Phone:</strong> +91 9983098510</p>
+          <p><strong>Email:</strong> py215618@gmail.com</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom text-center py-3 mt-4" style="border-top: 1px solid #333;">
+      © Copyright <span>Pari Yadav</span>. All Rights Reserved
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
